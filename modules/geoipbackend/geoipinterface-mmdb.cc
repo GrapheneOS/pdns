@@ -61,7 +61,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, false, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "country", "iso_code", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "country_code", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -73,7 +73,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, true, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "country", "iso_code", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "country_code", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -95,7 +95,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, false, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "continent", "code", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "continent_code", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -107,7 +107,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, true, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "continent", "code", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "continent_code", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -167,7 +167,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, false, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "subdivisions", "0", "iso_code", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "region_code", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -179,7 +179,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, true, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "subdivisions", "0", "iso_code", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "region_code", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -191,7 +191,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, false, gl, res))
       return false;
-    if ((MMDB_get_value(&res.entry, &data, "cities", "0", NULL) != MMDB_SUCCESS || !data.has_data) && (MMDB_get_value(&res.entry, &data, "city", "names", d_lang.c_str(), NULL) != MMDB_SUCCESS || !data.has_data))
+    if (MMDB_get_value(&res.entry, &data, "city", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -203,7 +203,7 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, true, gl, res))
       return false;
-    if ((MMDB_get_value(&res.entry, &data, "cities", "0", NULL) != MMDB_SUCCESS || !data.has_data) && (MMDB_get_value(&res.entry, &data, "city", "names", d_lang.c_str(), NULL) != MMDB_SUCCESS || !data.has_data))
+    if (MMDB_get_value(&res.entry, &data, "city", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     ret = string(data.utf8_string, data.data_size);
     return true;
@@ -217,13 +217,13 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, false, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "location", "latitude", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "latitude", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     latitude = data.double_value;
-    if (MMDB_get_value(&res.entry, &data, "location", "longitude", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "longitude", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     longitude = data.double_value;
-    if (MMDB_get_value(&res.entry, &data, "location", "accuracy_radius", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "radius", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     prec = data.uint16;
     return true;
@@ -237,13 +237,13 @@ public:
     MMDB_lookup_result_s res;
     if (!mmdbLookup(ip, true, gl, res))
       return false;
-    if (MMDB_get_value(&res.entry, &data, "location", "latitude", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "latitude", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     latitude = data.double_value;
-    if (MMDB_get_value(&res.entry, &data, "location", "longitude", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "longitude", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     longitude = data.double_value;
-    if (MMDB_get_value(&res.entry, &data, "location", "accuracy_radius", NULL) != MMDB_SUCCESS || !data.has_data)
+    if (MMDB_get_value(&res.entry, &data, "radius", NULL) != MMDB_SUCCESS || !data.has_data)
       return false;
     prec = data.uint16;
     return true;
